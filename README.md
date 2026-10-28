@@ -1,2 +1,421 @@
 # Hacking-tools-
-My phishing link 
+My phishing <!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Sami Hack Pro</title>
+<style>
+  :root{
+    --g:#00ff66; --g2:#00c04d; --r:#ff1f3d; --r2:#a30f25;
+    --bg:#05070a; --card:#0b1117; --line:#12301f; --txt:#c9ffe0; --dim:#6b8f7a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%;background:var(--bg);color:var(--txt);font-family:'Courier New',ui-monospace,monospace}
+  body{display:flex;justify-content:center}
+  #matrix{position:fixed;inset:0;z-index:0;opacity:.22}
+  .app{position:relative;z-index:1;width:100%;max-width:480px;height:100vh;height:100dvh;display:flex;flex-direction:column;
+    background:linear-gradient(180deg,rgba(5,7,10,.78),rgba(5,7,10,.92));border-left:1px solid var(--line);border-right:1px solid var(--line)}
+  header{padding:16px 18px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);
+    background:rgba(5,7,10,.85);backdrop-filter:blur(6px)}
+  .logo{font-size:15px;font-weight:900;letter-spacing:1.5px;color:var(--g);text-shadow:0 0 12px var(--g);line-height:1.3}
+  .logo span{color:var(--r);text-shadow:0 0 12px var(--r)}
+  .badge{font-size:11px;font-weight:700;letter-spacing:2px;padding:5px 10px;border:1px solid var(--r);color:var(--r);border-radius:20px;
+    box-shadow:0 0 10px rgba(255,31,61,.5);animation:pulse 2s infinite}
+  @keyframes pulse{50%{box-shadow:0 0 18px rgba(255,31,61,.9)}}
+  main{flex:1;overflow-y:auto;padding:16px 16px 20px}
+  .page{display:none;animation:fade .3s}
+  .page.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
+  h2{font-size:15px;letter-spacing:2px;color:var(--g);margin:18px 0 10px;text-transform:uppercase}
+  h2::before{content:"> ";color:var(--r)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:12px;
+    box-shadow:0 0 18px rgba(0,255,102,.06) inset}
+  .hero{border-color:var(--g2);background:linear-gradient(135deg,#07160e,#14070b);text-align:center;padding:24px 16px}
+  .hero .big{font-size:20px;font-weight:900;color:var(--g);text-shadow:0 0 10px var(--g);letter-spacing:2px}
+  .hero .sub{color:var(--dim);font-size:13px;margin-top:6px}
+  .status{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-size:13px}
+  .dot{width:10px;height:10px;border-radius:50%;background:var(--g);box-shadow:0 0 10px var(--g);animation:pulse2 1.4s infinite}
+  .dot.off{background:var(--r);box-shadow:0 0 10px var(--r)}
+  @keyframes pulse2{50%{opacity:.35}}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .stat{text-align:center}
+  .stat b{display:block;font-size:22px;color:var(--g)}
+  .stat.red b{color:var(--r)}
+  .stat small{color:var(--dim);font-size:11px;letter-spacing:1px}
+  .term{background:#020405;border:1px solid var(--line);border-radius:12px;padding:12px;height:160px;overflow:hidden;font-size:12px;line-height:1.6}
+  .term div{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ok{color:var(--g)} .bad{color:var(--r)}
+  .tool{display:flex;flex-direction:column;align-items:center;gap:8px;padding:20px 10px;cursor:pointer;text-align:center;
+    background:var(--card);border:1px solid var(--line);border-radius:14px;transition:.2s;color:var(--txt)}
+  .tool:active{transform:scale(.96);border-color:var(--r)}
+  .tool:hover{border-color:var(--g);box-shadow:0 0 14px rgba(0,255,102,.3)}
+  .tool .ic{font-size:30px}
+  .tool .nm{font-size:13px;font-weight:700;color:var(--g);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .tool .ds{font-size:11px;color:var(--dim)}
+  .tool.r .nm{color:var(--r)}
+  .tool{position:relative;overflow:hidden}
+  .tool::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% -20%,rgba(0,255,102,.18),transparent 60%);opacity:0;transition:.25s}
+  .tool:active::after{opacity:1}
+  .tool .ic{width:52px;height:52px;display:flex;align-items:center;justify-content:center;border-radius:14px;
+    background:linear-gradient(145deg,#0f1c14,#081009);border:1px solid var(--line);box-shadow:0 0 14px rgba(0,255,102,.15) inset}
+  .tool.r .ic{box-shadow:0 0 14px rgba(255,31,61,.18) inset}
+  .copybar{display:flex;gap:8px;align-items:stretch;margin-bottom:10px}
+  .copybar button{flex:0 0 auto;padding:0 14px;border:none;border-radius:10px;font-family:inherit;font-weight:900;cursor:pointer;
+    background:linear-gradient(135deg,var(--g2),var(--g));color:#00130a}
+  .copybar button.openb{background:linear-gradient(135deg,var(--r2),var(--r));color:#fff}
+  .hint{font-size:11px;color:var(--dim);margin:-4px 0 10px}
+  .panel{position:fixed;inset:0;z-index:5;max-width:480px;margin:0 auto;background:rgba(3,5,7,.98);padding:16px;overflow-y:auto;display:none}
+  .panel.open{display:block;animation:fade .25s}
+  .panel .top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .back{background:none;border:1px solid var(--r);color:var(--r);padding:8px 14px;border-radius:10px;font-family:inherit;font-size:14px;cursor:pointer}
+  .panel h3{color:var(--g);font-size:17px;letter-spacing:2px}
+  textarea,input[type=text],input[type=number],select{width:100%;background:#020405;border:1px solid var(--line);color:var(--g);
+    border-radius:10px;padding:12px;font-family:inherit;font-size:14px;margin-bottom:10px;outline:none}
+  textarea{min-height:100px;resize:vertical}
+  textarea.big{min-height:220px}
+  textarea:focus,input:focus,select:focus{border-color:var(--g);box-shadow:0 0 10px rgba(0,255,102,.3)}
+  .btn{width:100%;padding:13px;border:none;border-radius:10px;font-family:inherit;font-weight:900;letter-spacing:2px;font-size:14px;cursor:pointer;margin-bottom:8px;
+    background:linear-gradient(135deg,var(--g2),var(--g));color:#00130a}
+  .btn.red{background:linear-gradient(135deg,var(--r2),var(--r));color:#fff}
+  .btn:active{transform:scale(.97)}
+  .row{display:flex;gap:8px}
+  .out{background:#020405;border:1px dashed var(--g2);border-radius:10px;padding:12px;color:var(--g);font-size:13px;word-break:break-all;min-height:48px;white-space:pre-wrap;margin-bottom:8px}
+  .bar{height:10px;background:#111;border-radius:6px;overflow:hidden;margin:6px 0 10px}
+  .bar i{display:block;height:100%;width:0;background:var(--r);transition:.3s}
+  .pf-head{position:relative;border-radius:18px;overflow:hidden;margin-bottom:14px;
+    background:linear-gradient(160deg,#07160e 0%,#0b1117 55%,#14070b 100%);border:1px solid var(--g2);padding:26px 16px 20px;text-align:center}
+  .pf-head::before{content:"";position:absolute;inset:0;background:
+    repeating-linear-gradient(90deg,rgba(0,255,102,.05) 0 1px,transparent 1px 22px);pointer-events:none}
+  .pf-top{position:relative;text-align:center;padding:0}
+  .avatar{width:100px;height:100px;margin:0 auto 14px;border-radius:50%;border:3px solid var(--g);display:flex;align-items:center;justify-content:center;
+    font-size:44px;box-shadow:0 0 26px var(--g),0 0 0 7px rgba(255,31,61,.22);background:#06120b;position:relative}
+  .avatar .ring{position:absolute;inset:-9px;border-radius:50%;border:1px dashed var(--r);animation:spin 9s linear infinite;opacity:.6}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .pf-top h1{font-size:19px;color:var(--g);letter-spacing:2px;text-shadow:0 0 10px rgba(0,255,102,.5)}
+  .pf-top p{color:var(--r);font-size:12px;letter-spacing:3px;margin-top:6px;font-weight:700}
+  .pf-link{display:inline-flex;align-items:center;gap:6px;margin-top:14px;background:#020405;border:1px solid var(--line);
+    border-radius:20px;padding:7px 14px;font-size:12px;color:var(--g);max-width:100%}
+  .pf-link a{color:var(--g);text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:240px}
+  .pf-link .dotlive{width:7px;height:7px;border-radius:50%;background:var(--g);box-shadow:0 0 6px var(--g);flex:0 0 auto}
+  .li{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid var(--line);font-size:13px}
+  .li:last-child{border:none} .li span:first-child{color:var(--dim)}
+  nav{display:flex;border-top:1px solid var(--g2);background:linear-gradient(180deg,rgba(5,7,10,.9),rgba(3,5,7,.99));
+    padding:10px 10px calc(10px + env(safe-area-inset-bottom));box-shadow:0 -8px 28px rgba(0,255,102,.14);gap:6px}
+  nav button{flex:1;background:#070c09;border:1px solid transparent;border-radius:14px;color:var(--dim);font-family:inherit;padding:9px 0;
+    cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;transition:.2s}
+  nav button .i{font-size:24px;transition:.2s}
+  nav button .t{font-size:11px;font-weight:700;letter-spacing:2px}
+  nav button.active{color:var(--g);background:#0c1a10;border-color:var(--g2);box-shadow:0 0 14px rgba(0,255,102,.25)}
+  nav button.active .i{transform:translateY(-2px);filter:drop-shadow(0 0 6px var(--r))}
+  nav button.active .t{color:var(--r);text-shadow:0 0 8px var(--r)}
+  .toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:var(--g);color:#00130a;padding:10px 18px;border-radius:20px;font-weight:700;font-size:13px;z-index:9;opacity:0;transition:.3s;pointer-events:none}
+  .toast.show{opacity:1}
+  .link-panel{background:#020405;border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:10px}
+  .link-panel label{font-size:11px;color:var(--dim);letter-spacing:1px;display:block;margin-bottom:6px}
+  .link-panel input{margin-bottom:0}
+  .link-actions{display:flex;gap:8px;margin-top:10px}
+  .link-actions button{flex:1;padding:12px 8px;border:none;border-radius:10px;font-family:inherit;font-weight:900;font-size:13px;cursor:pointer;letter-spacing:1px}
+  .link-actions .cbtn{background:linear-gradient(135deg,var(--g2),var(--g));color:#00130a}
+  .link-actions .obtn{background:linear-gradient(135deg,var(--r2),var(--r));color:#fff}
+  .link-actions button:active{transform:scale(.96)}
+</style>
+</head>
+<body>
+<canvas id="matrix"></canvas>
+<div class="app">
+  <header>
+    <div class="logo">SAMI HACK <span>PRO</span></div>
+    <div class="badge">★ PREMIUM</div>
+  </header>
+  <main>
+    <!-- HOME -->
+    <section class="page active" id="home">
+      <div class="card hero">
+        <div class="big">SYSTEM ONLINE</div>
+        <div class="sub">Welcome back, <span id="hName">Hacker</span></div>
+        <div class="status"><span class="dot" id="netDot"></span><span id="netTxt">Checking...</span></div>
+      </div>
+      <div class="grid">
+        <div class="card stat"><b id="sTime">--:--</b><small>LOCAL TIME</small></div>
+        <div class="card stat red"><b id="sUsed">0</b><small>TOOLS USED</small></div>
+        <div class="card stat"><b id="sBat">--</b><small>BATTERY</small></div>
+        <div class="card stat red"><b id="sScr">--</b><small>SCREEN</small></div>
+      </div>
+      <h2>Live Console</h2>
+      <div class="term" id="term"></div>
+      <h2>Quick Access</h2>
+      <div class="grid">
+        <div class="tool" onclick="openTool('hash')"><div class="ic">🔐</div><div class="nm">HASH GEN</div><div class="ds">SHA-256 / 512</div></div>
+        <div class="tool r" onclick="openTool('pass')"><div class="ic">🔑</div><div class="nm">PASS GEN</div><div class="ds">Strong passwords</div></div>
+      </div>
+    </section>
+    <!-- TOOLS -->
+    <section class="page" id="tools">
+      <h2>Quick Shortcuts</h2>
+      <div class="grid">
+        <div class="tool" onclick="openTool('fb')"><div class="ic">📘</div><div class="nm">FACEBOOK PHISHING</div><div class="ds">Open / Copy link</div></div>
+        <div class="tool r" onclick="openTool('gmail')"><div class="ic">📧</div><div class="nm">GMAIL PHISHING</div><div class="ds">Open / Copy link</div></div>
+        <div class="tool" onclick="openTool('cam')"><div class="ic">📷</div><div class="nm">CAMERA HACK</div><div class="ds">Open device camera</div></div>
+        <div class="tool r" onclick="openTool('ig')"><div class="ic">📸</div><div class="nm">INSTAGRAM PHISHING</div><div class="ds">Open / Copy link</div></div>
+        <div class="tool r" onclick="openTool('scanner')"><div class="ic">📡</div><div class="nm">DEVICE SCANNER</div><div class="ds">Open / Copy link</div></div>
+        <div class="tool r" onclick="openTool('lovechat')"><div class="ic">💬</div><div class="nm">LOVE CHAT</div><div class="ds">Open / Copy link</div></div>
+      </div>
+      <h2>Premium Tools</h2>
+      <div class="grid">
+        <div class="tool" onclick="openTool('hash')"><div class="ic">🔐</div><div class="nm">HASH GENERATOR</div><div class="ds">SHA-1/256/384/512</div></div>
+        <div class="tool r" onclick="openTool('b64')"><div class="ic">🧬</div><div class="nm">BASE64</div><div class="ds">Encode / Decode</div></div>
+        <div class="tool r" onclick="openTool('pass')"><div class="ic">🔑</div><div class="nm">PASS GENERATOR</div><div class="ds">Random secure</div></div>
+        <div class="tool" onclick="openTool('strength')"><div class="ic">🛡️</div><div class="nm">PASS CHECKER</div><div class="ds">Strength test</div></div>
+        <div class="tool" onclick="openTool('hex')"><div class="ic">💾</div><div class="nm">HEX / BINARY</div><div class="ds">Text converter</div></div>
+        <div class="tool r" onclick="openTool('url')"><div class="ic">🔗</div><div class="nm">URL ENCODER</div><div class="ds">Encode / Decode</div></div>
+        <div class="tool" onclick="openTool('qr')"><div class="ic">▦</div><div class="nm">LINK → QR</div><div class="ds">Make QR code</div></div>
+        <div class="tool r" onclick="openTool('note')"><div class="ic">📝</div><div class="nm">QUICK NOTE</div><div class="ds">Saved locally</div></div>
+      </div>
+    </section>
+    <!-- PROFILE -->
+    <section class="page" id="profile">
+      <div class="pf-head">
+        <div class="pf-top">
+          <div class="avatar"><div class="ring"></div><span id="pAvatarEmoji">👤</span></div>
+          <h1 id="pName">Musfikur Rahman Sami</h1>
+          <p>DEVELOPER FACEBOOK PROFILE</p>
+          <div class="pf-link" id="pfLinkWrap" style="display:inline-flex">
+            <span class="dotlive"></span>
+            <a id="pfLinkA" href="https://www.facebook.com/md.sami.47565" target="_blank" rel="noopener">facebook.com/md.sami.47565</a>
+          </div>
+          <div class="row" style="position:relative;margin-top:14px">
+            <button class="btn red" style="margin:0" onclick="openFb()">🔗 OPEN FACEBOOK</button>
+            <button class="btn" style="margin:0" onclick="copy(fbLink)">COPY LINK</button>
+          </div>
+        </div>
+      </div>
+      <h2>Account</h2>
+      <div class="card">
+        <div class="li"><span>Plan</span><span class="ok">PREMIUM</span></div>
+        <div class="li"><span>Rank</span><span id="pRank" class="bad">Newbie</span></div>
+        <div class="li"><span>Tools Used</span><span id="pUsed">0</span></div>
+        <div class="li"><span>Device</span><span id="pDev">-</span></div>
+      </div>
+      <h2>Edit Profile</h2>
+      <div class="card">
+        <input type="text" id="nameIn" placeholder="Your name" maxlength="30">
+        <input type="text" id="fbIn" placeholder="Your Facebook profile link">
+        <button class="btn" onclick="saveName()">SAVE PROFILE</button>
+        <button class="btn red" onclick="resetAll()">RESET DATA</button>
+      </div>
+    </section>
+  </main>
+  <nav>
+    <button class="active" data-p="home"><span class="i">🏠</span><span class="t">HOME</span></button>
+    <button data-p="tools"><span class="i">🛠️</span><span class="t">TOOLS</span></button>
+    <button data-p="profile"><span class="i">👤</span><span class="t">PROFILE</span></button>
+  </nav>
+</div>
+<!-- TOOL PANEL -->
+<div class="panel" id="panel">
+  <div class="top"><button class="back" onclick="closeTool()">◀ BACK</button><h3 id="pTitle"></h3></div>
+  <div id="pBody"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* Matrix */
+const cv=document.getElementById('matrix'),cx=cv.getContext('2d');
+function rs(){cv.width=innerWidth;cv.height=innerHeight}rs();addEventListener('resize',rs);
+const ch='01ABCDEF$#<>/\\{}[]';let cols,drops;
+function initM(){cols=Math.floor(cv.width/16);drops=Array(cols).fill(1)}initM();addEventListener('resize',initM);
+setInterval(()=>{
+  cx.fillStyle='rgba(5,7,10,.08)';cx.fillRect(0,0,cv.width,cv.height);
+  cx.font='15px monospace';
+  for(let i=0;i<drops.length;i++){
+    cx.fillStyle=Math.random()>.93?'#ff1f3d':'#00ff66';
+    cx.fillText(ch[Math.floor(Math.random()*ch.length)],i*16,drops[i]*16);
+    if(drops[i]*16>cv.height&&Math.random()>.975)drops[i]=0;drops[i]++;
+  }
+},50);
+
+/* Storage */
+const S={
+  get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}},
+  set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}}
+};
+let used=S.get('used',0),
+    name=S.get('name','Musfikur Rahman Sami'),
+    fbLink=S.get('fbLink','https://www.facebook.com/md.sami.47565');
+
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1500)}
+function rank(n){return n>=100?'Legend':n>=50?'Elite':n>=20?'Pro':n>=5?'Hacker':'Newbie'}
+function refresh(){
+  hName.textContent=name;pName.textContent=name;sUsed.textContent=used;pUsed.textContent=used;
+  pRank.textContent=rank(used);pDev.textContent=(navigator.platform||'Unknown');
+  nameIn.value=name;fbIn.value=fbLink;
+  if(fbLink){pfLinkWrap.style.display='inline-flex';pfLinkA.href=fbLink;pfLinkA.textContent=fbLink.replace(/^https?:\/\//,'')}
+  else{pfLinkWrap.style.display='none'}
+}
+function bump(){used++;S.set('used',used);refresh();log('Tool executed successfully','ok')}
+
+/* Nav */
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(b.dataset.p).classList.add('active');
+  document.querySelector('main').scrollTop=0;
+});
+
+/* Home stats */
+function clock(){sTime.textContent=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}
+setInterval(clock,1000);clock();
+sScr.textContent=screen.width+'x'+screen.height;
+function net(){const on=navigator.onLine;netDot.className='dot'+(on?'':' off');netTxt.textContent=on?'NETWORK CONNECTED':'NO CONNECTION'}
+addEventListener('online',net);addEventListener('offline',net);net();
+if(navigator.getBattery)navigator.getBattery().then(b=>{const u=()=>sBat.textContent=Math.round(b.level*100)+'%';u();b.onlevelchange=u});
+else sBat.textContent='N/A';
+
+const term=document.getElementById('term');
+function log(m,c){const d=document.createElement('div');d.className=c||'';d.textContent='['+new Date().toLocaleTimeString()+'] '+m;term.appendChild(d);while(term.children.length>8)term.firstChild.remove()}
+log('HackPro core loaded','ok');log('Premium license verified','ok');log('Waiting for command...');
+
+/* Profile */
+function saveName(){
+  const v=nameIn.value.trim();if(!v)return toast('Name likho');
+  let fb=fbIn.value.trim();if(fb&&!/^https?:\/\//i.test(fb))fb='https://'+fb;
+  name=v;fbLink=fb;S.set('name',v);S.set('fbLink',fb);refresh();toast('Profile saved ✔');
+}
+function openFb(){if(!fbLink)return toast('Facebook link nai');window.open(fbLink,'_blank')}
+function resetAll(){used=0;name='Musfikur Rahman Sami';fbLink='https://www.facebook.com/md.sami.47565';
+  S.set('used',0);S.set('name',name);S.set('fbLink',fbLink);refresh();toast('Reset done')}
+
+/* Helpers */
+const copy=t=>{navigator.clipboard?.writeText(t).then(()=>toast('Copied ✔')).catch(()=>toast('Copy failed'))};
+const hex=b=>[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
+
+/* Link tool builder — fb/gmail/ig/cam/scanner/lovechat সবার জন্য */
+function buildLinkTool(title, storageKey, defaultLink){
+  return {
+    t: title,
+    h: `
+      <p class="hint" style="margin-bottom:14px">⬇ নিচে লিঙ্ক বসাও, তারপর কপি বা ওপেন করো।</p>
+      <div class="link-panel">
+        <label>🔗 LINK</label>
+        <input type="text" id="linkInput" placeholder="https://..." value="${defaultLink}">
+        <div class="link-actions">
+          <button class="cbtn" onclick="doLinkCopy()">📋 COPY</button>
+          <button class="obtn" onclick="doLinkOpen()">🚀 OPEN</button>
+        </div>
+      </div>
+      <button class="btn" style="margin-top:4px" onclick="doLinkSave()">💾 SAVE LINK</button>`,
+    init:()=>{
+      const saved=S.get(storageKey, defaultLink);
+      document.getElementById('linkInput').value=saved||defaultLink;
+    },
+    doLinkCopy:()=>{
+      const v=document.getElementById('linkInput').value.trim();
+      if(!v)return toast('Link likho!');
+      copy(v);
+    },
+    doLinkOpen:()=>{
+      let v=document.getElementById('linkInput').value.trim();
+      if(!v)return toast('Link likho!');
+      if(!/^https?:\/\//i.test(v))v='https://'+v;
+      window.open(v,'_blank');
+    },
+    doLinkSave:()=>{
+      const v=document.getElementById('linkInput').value.trim();
+      S.set(storageKey,v);
+      toast('Link saved ✔');
+    }
+  };
+}
+
+/* Tools object — duplicate cam key নেই, scanner ও lovechat আলাদা */
+const T={
+  fb:      buildLinkTool('FACEBOOK PHISHING',  'lnk_fb',      'https://vip-tools-backend.onrender.com/phis/f/3fb6fa1e'),
+  gmail:   buildLinkTool('GMAIL PHISHING',     'lnk_gmail',   'https://vip-tools-backend.onrender.com/phis/f/6153b5d7'),
+  ig:      buildLinkTool('INSTAGRAM PHISHING', 'lnk_ig',      'https://vip-tools-backend.onrender.com/phis/f/7806608b'),
+  cam:     buildLinkTool('CAMERA HACK',        'lnk_cam',     'https://surl.li/ainrwu'),
+  scanner: buildLinkTool('DEVICE SCANNER',     'lnk_scanner', 'https://surl.li/tlqpee'),
+  lovechat:buildLinkTool('LOVE CHAT',          'lnk_lovechat','https://surl.li/ikfnai'),
+
+  qr:{t:'LINK → QR',h:`<input type="text" id="i" placeholder="Paste any link or text...">
+    <button class="btn" onclick="run()">GENERATE QR</button>
+    <div style="text-align:center;margin-top:8px" id="qrbox"></div>`,
+    run:()=>{const v=i.value.trim();if(!v)return toast('Link likho');
+      qrbox.innerHTML='<img style="width:200px;height:200px;border-radius:10px;border:1px solid var(--line)" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data='+encodeURIComponent(v)+'">'}},
+
+  note:{t:'QUICK NOTE',h:`<textarea id="i" placeholder="Likho, ekhane save thakbe..."></textarea>
+    <button class="btn" onclick="run()">SAVE NOTE</button>`,
+    run:()=>{S.set('note',i.value);toast('Note saved ✔')}},
+
+  hash:{t:'HASH GENERATOR',h:`<textarea id="i" placeholder="Text likho..."></textarea>
+    <select id="a"><option>SHA-256</option><option>SHA-1</option><option>SHA-384</option><option>SHA-512</option></select>
+    <button class="btn" onclick="run()">GENERATE</button>
+    <div class="out" id="o"></div>
+    <button class="btn red" onclick="copy(o.textContent)">COPY</button>`,
+    run:async()=>{const b=await crypto.subtle.digest(a.value,new TextEncoder().encode(i.value));o.textContent=hex(b)}},
+
+  b64:{t:'BASE64',h:`<textarea id="i" placeholder="Text likho..."></textarea>
+    <div class="row"><button class="btn" onclick="enc()">ENCODE</button><button class="btn red" onclick="dec()">DECODE</button></div>
+    <div class="out" id="o"></div>
+    <button class="btn red" onclick="copy(o.textContent)">COPY</button>`,
+    enc:()=>{o.textContent=btoa(String.fromCharCode(...new TextEncoder().encode(i.value)))},
+    dec:()=>{try{o.textContent=new TextDecoder().decode(Uint8Array.from(atob(i.value.trim()),c=>c.charCodeAt(0)))}catch{o.textContent='Invalid Base64'}}},
+
+  pass:{t:'PASS GENERATOR',h:`<input type="number" id="l" value="16" min="6" max="64">
+    <select id="m"><option value="all">Letters + Numbers + Symbols</option><option value="an">Letters + Numbers</option><option value="n">Numbers only</option></select>
+    <button class="btn" onclick="run()">GENERATE</button>
+    <div class="out" id="o"></div>
+    <button class="btn red" onclick="copy(o.textContent)">COPY</button>`,
+    run:()=>{
+      const set={all:'abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789!@#$%^&*()-_=+',
+                 an:'abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789',n:'0123456789'}[m.value];
+      const n=Math.min(64,Math.max(6,+l.value||16)),r=crypto.getRandomValues(new Uint32Array(n));
+      o.textContent=[...r].map(x=>set[x%set.length]).join('')}},
+
+  strength:{t:'PASS CHECKER',h:`<input type="text" id="i" placeholder="Password likho..." oninput="run()">
+    <div class="bar"><i id="bar"></i></div>
+    <div class="out" id="o">-</div>`,
+    run:()=>{const p=i.value;let s=0;
+      if(p.length>=8)s++;if(p.length>=12)s++;
+      if(/[a-z]/.test(p)&&/[A-Z]/.test(p))s++;if(/\d/.test(p))s++;if(/[^A-Za-z0-9]/.test(p))s++;
+      const lv=['Very Weak','Weak','Okay','Good','Strong','Excellent'][s];
+      bar.style.width=(s/5*100)+'%';bar.style.background=s<3?'#ff1f3d':'#00ff66';
+      o.textContent=p?lv+' ('+s+'/5)':'-'},noCount:true},
+
+  hex:{t:'HEX / BINARY',h:`<textarea id="i" placeholder="Text likho..."></textarea>
+    <div class="row"><button class="btn" onclick="toH()">TO HEX</button><button class="btn red" onclick="toB()">TO BINARY</button></div>
+    <div class="out" id="o"></div>
+    <button class="btn red" onclick="copy(o.textContent)">COPY</button>`,
+    toH:()=>{o.textContent=[...new TextEncoder().encode(i.value)].map(x=>x.toString(16).padStart(2,'0')).join(' ')},
+    toB:()=>{o.textContent=[...new TextEncoder().encode(i.value)].map(x=>x.toString(2).padStart(8,'0')).join(' ')}},
+
+  url:{t:'URL ENCODER',h:`<textarea id="i" placeholder="Text / URL likho..."></textarea>
+    <div class="row"><button class="btn" onclick="enc()">ENCODE</button><button class="btn red" onclick="dec()">DECODE</button></div>
+    <div class="out" id="o"></div>
+    <button class="btn red" onclick="copy(o.textContent)">COPY</button>`,
+    enc:()=>{o.textContent=encodeURIComponent(i.value)},
+    dec:()=>{try{o.textContent=decodeURIComponent(i.value)}catch{o.textContent='Invalid input'}}}
+};
+
+/* openTool */
+function openTool(k){
+  const t=T[k];
+  if(!t){toast('Tool not found');return;}
+  pTitle.textContent=t.t;
+  pBody.innerHTML=t.h;
+  panel.classList.add('open');
+  Object.keys(t).forEach(f=>{
+    if(typeof t[f]==='function'){
+      window[f]=async(...a)=>{await t[f](...a);if(!t.noCount)bump();}
+    }
+  });
+  if(t.noCount)window.run=t.run;
+  if(k==='note'){const el=document.getElementById('i');if(el)el.value=S.get('note','')}
+  if(typeof t.init==='function')t.init();
+  log('Opened '+t.t);
+}
+function closeTool(){panel.classList.remove('open')}
+refresh();
+</script>
+</body>
+</html> 
